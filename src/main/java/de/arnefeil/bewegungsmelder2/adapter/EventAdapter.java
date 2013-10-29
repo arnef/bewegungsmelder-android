@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -38,6 +40,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
     private TextView tvLinks;
     private TableLayout tvBands;
     private ImageView ivFavorite;
+    private LinearLayout lvCategories;
     private MainActivity mainActivity;
 
     public EventAdapter(MainActivity mainActivity, int textViewResourceId,
@@ -47,8 +50,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
         this.events = objects;
     }
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    private View eventsView(int position, View convertView, ViewGroup parant) {
         View v = convertView;
 
         if (v == null) {
@@ -60,8 +62,16 @@ public class EventAdapter extends ArrayAdapter<Event> {
         final Event event = this.events.get(position);
         this.setRegsiter(v);
         if (event != null) {
-            if (this.tvTitle != null)
-                this.tvTitle.setText(event.getTitle());
+            if (this.tvTitle != null) {
+                RelativeLayout rl = (RelativeLayout) v.findViewById(R.id.eventback);
+                if  (event.isCancelled()) {
+                    this.tvTitle.setText("Cancelled " + event.getTitle());
+                    rl.setBackgroundColor(Color.parseColor("#593737"));
+                } else {
+                    this.tvTitle.setText(event.getTitle());
+                    rl.setBackgroundColor(Color.parseColor("#373737"));
+                }
+            }
             if (this.tvLocation != null) {
                 if (event.getLocation() != null)
                     this.tvLocation.setText(event.getLocation().getTitle());
@@ -153,15 +163,43 @@ public class EventAdapter extends ArrayAdapter<Event> {
                     @Override
                     public void onClick(View v) {
                         event.setFavorite(!event.isFavorite());
-                        mainActivity.updateView();
+                        mainActivity.updateList();
 
                     }
                 });
+            }
+            if (this.lvCategories != null) {
+                lvCategories.removeAllViews();
+                if (event.getType() != null) {
+                    for (String type: event.getType()) {
+                        TextView cat = new TextView(this.mainActivity);
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.WRAP_CONTENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT);
+                        params.setMargins(0,0,6,0);
+                        cat.setLayoutParams(params);
+                        cat.setPadding(3,3,3,3);
+                        cat.setBackgroundColor(Color.parseColor("#ffffee"));
+
+                        cat.setText(type);
+
+                        lvCategories.addView(cat);
+
+                    }
+                    //types = types.substring(0, types.length() - 2);
+                    //this.tvCategories.setText(Html.fromHtml(types));
+                }
             }
 
         }
 
         return v;
+    }
+
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+            return this.eventsView(position, convertView, parent);
     }
 
     private void setRegsiter(View v) {
@@ -175,5 +213,6 @@ public class EventAdapter extends ArrayAdapter<Event> {
         this.tvLinks = (TextView) v.findViewById(R.id.tvLinks);
         this.tvBands = (TableLayout) v.findViewById(R.id.tableBands);
         this.ivFavorite = (ImageView) v.findViewById(R.id.iv_favorite);
+        this.lvCategories = (LinearLayout) v.findViewById(R.id.ll_categories);
     }
 }

@@ -32,8 +32,9 @@ public class UpdateChecker extends AsyncTask<Void, Void, String> {
 
     private MainActivity mainActivity;
     private ProgressDialog progressDialog;
-    //private final String url = "http://192.168.1.17/~arne/bmelderAPI/getEvents.php?updateCheck";
-    private final String url = "http://www.yomena.com/test/bewegungsmelder/android/getEvents.php?updateCheck";
+    private final String url = "http://192.168.1.17/~arne/bmelderAPI/getEvents.php?updateCheck";
+    //private final String url = "http://10.0.2.2/~arne/bmelderAPI/getEvents.php?updateCheck";
+    //private final String url = "http://www.yomena.com/test/bewegungsmelder/android/getEvents.php?updateCheck";
 
     public UpdateChecker(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
@@ -51,13 +52,13 @@ public class UpdateChecker extends AsyncTask<Void, Void, String> {
                 String date = today.getYear() + "-" + today.getMonth() + "-" + today.getDay();
                 editor.putString("last_sync", date);
                 editor.commit();
-                this.progressDialog.setMessage(this.mainActivity.getString(
+                mainActivity.setProgressText(this.mainActivity.getString(
                         R.string.text_no_update_available));
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        UpdateChecker.this.progressDialog.dismiss();
+                        mainActivity.showList();
                     }
                 }, 1500);
             }
@@ -96,10 +97,14 @@ public class UpdateChecker extends AsyncTask<Void, Void, String> {
     }
 
     protected void onPreExecute() {
-        this.progressDialog = new ProgressDialog(this.mainActivity);
+        /*this.progressDialog = new ProgressDialog(this.mainActivity);
         this.progressDialog.setMessage(this.mainActivity.getString(R.string.text_search_for_update));
         this.progressDialog.setCancelable(false);
-        this.progressDialog.show();
+        this.progressDialog.show();*/
+        this.mainActivity.showProgress();
+        this.mainActivity.setProgressText(
+                this.mainActivity.getString(R.string.text_search_for_update)
+        );
     }
 
     protected String doInBackground(Void... params) {
@@ -138,14 +143,14 @@ public class UpdateChecker extends AsyncTask<Void, Void, String> {
         if (result != null) {
             this.checkForUpdate(result);
         } else {
-            this.progressDialog.setMessage(this.mainActivity.getString(
+            this.mainActivity.setProgressText(this.mainActivity.getString(
                     R.string.text_update_error
             ));
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    UpdateChecker.this.progressDialog.dismiss();
+                    mainActivity.showList();
                 }
             }, 1500);
         }

@@ -24,8 +24,9 @@ public class EventDownloader extends AsyncTask<Void, Void, Boolean> {
 
     private ProgressDialog progressDialog;
     private MainActivity mainActivity;
-    //private final String url = "http://192.168.1.17/~arne/bmelderAPI/getEvents.php?downloadEvents";
-    private final String url = "http://www.yomena.com/test/bewegungsmelder/android/getEvents.php?downloadEvents";
+    private final String url = "http://192.168.1.17/~arne/bmelderAPI/getEvents.php?downloadEvents";
+    //private final String url = "http://10.0.2.2/~arne/bmelderAPI/getEvents.php?downloadEvents";
+    //private final String url = "http://www.yomena.com/test/bewegungsmelder/android/getEvents.php?downloadEvents";
 
     public EventDownloader(MainActivity mainActivity, ProgressDialog progressDialog) {
         this.mainActivity = mainActivity;
@@ -33,7 +34,9 @@ public class EventDownloader extends AsyncTask<Void, Void, Boolean> {
     }
 
     protected void onPreExecute() {
-        this.progressDialog.setMessage(this.mainActivity.getString(R.string.text_download_update));
+        mainActivity.setProgressText(
+                this.mainActivity.getString(R.string.text_download_update)
+        );
     }
 
     protected Boolean doInBackground(Void... params) {
@@ -62,7 +65,7 @@ public class EventDownloader extends AsyncTask<Void, Void, Boolean> {
 
     protected void onPostExecute(Boolean result) {
         if (result) {
-            this.progressDialog.setMessage(this.mainActivity.getString(
+            mainActivity.setProgressText(this.mainActivity.getString(
                     R.string.text_update_success
             ));
             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this.mainActivity).edit();
@@ -70,8 +73,10 @@ public class EventDownloader extends AsyncTask<Void, Void, Boolean> {
             String date = today.getYear() + "-" + today.getMonth() + "-" + today.getDay();
             editor.putString("last_sync", date);
             editor.commit();
-            this.mainActivity.getEventLoader().update();
-            this.mainActivity.updateView();
+
+
+//            this.mainActivity.showList();
+//            this.mainActivity.updateView();
         } else {
             this.progressDialog.setMessage(this.mainActivity.getString(
                     R.string.text_update_error
@@ -81,7 +86,7 @@ public class EventDownloader extends AsyncTask<Void, Void, Boolean> {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                EventDownloader.this.progressDialog.dismiss();
+                mainActivity.updateEvents();
             }
         }, 1500);
     }

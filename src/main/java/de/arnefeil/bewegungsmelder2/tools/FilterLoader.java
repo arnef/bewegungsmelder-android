@@ -1,6 +1,7 @@
 package de.arnefeil.bewegungsmelder2.tools;
 
 import android.app.Dialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -45,6 +46,9 @@ public class FilterLoader {
         this.setAvailableBands();
         this.setAvailableLocations();
         this.setAvailableTypes();
+        Log.v("FilterLoader", "Bands: " + this.availableBands.size()
+                + "\nLocations: " + this.availableLocations.size()
+                + "\nTypes: " + this.availableTypes.size());
     }
 
     public void execute() {
@@ -107,35 +111,38 @@ public class FilterLoader {
 
     private void setAvailableBands() {
         Set<Band> bands = new TreeSet<Band>();
+        if (this.allEvents != null) {
         for (Event e: this.allEvents) {
             if (e.getBands() != null) {
                 for (Band b: e.getBands()) {
                     bands.add(b);
                 }
             }
-        }
+        }}
         this.availableBands = new ArrayList<Object>(bands);
     }
 
     private void setAvailableLocations() {
         Set<Location> locations = new TreeSet<Location>();
+        if (this.allEvents != null) {
         for (Event e: this.allEvents) {
             if (e.getLocation() != null) {
                 locations.add(e.getLocation());
             }
-        }
+        }}
         this.availableLocations = new ArrayList<Object>(locations);
     }
 
     private void setAvailableTypes() {
         Set<String> types = new TreeSet<String>();
+        if (this.allEvents != null) {
         for (Event e: this.allEvents) {
             if (e.getType() != null) {
                 for (String t: e.getType()) {
                     types.add(t);
                 }
             }
-        }
+        }}
         this.availableTypes = new ArrayList<Object>(types);
     }
 
@@ -202,6 +209,7 @@ public class FilterLoader {
     }
 
     private void filter() {
+        this.filteredEvents.clear();
         for (Object o: this.filter) {
             Filter filter = (Filter) o;
             if (filter.getWhitelist().size() > 0) {

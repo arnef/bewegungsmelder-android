@@ -1,4 +1,28 @@
-<android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#444">
+
+    <FrameLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:id="@+id/fl_loading_circle">
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-45dp"
+        android:layout_gravity="center" />
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/tv_progress"
+        android:textColor="#fff"/>
+
+    </FrameLayout>
+
+    <android.support.v4.view.ViewPager
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/pager"
     android:layout_width="match_parent"
@@ -17,4 +41,5 @@
         style="@android:style/TextAppearance.Medium"
         />
 
-    </android.support.v4.view.ViewPager>
+</android.support.v4.view.ViewPager>
+</LinearLayout>

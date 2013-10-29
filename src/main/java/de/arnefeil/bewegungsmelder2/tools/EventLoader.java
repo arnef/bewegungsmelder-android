@@ -1,7 +1,10 @@
 package de.arnefeil.bewegungsmelder2.tools;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -16,6 +19,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import de.arnefeil.bewegungsmelder2.MainActivity;
 import de.arnefeil.bewegungsmelder2.models.Band;
 import de.arnefeil.bewegungsmelder2.models.Date;
 import de.arnefeil.bewegungsmelder2.models.Event;
@@ -26,7 +30,7 @@ import de.arnefeil.bewegungsmelder2.models.Time;
 /**
  * Created by arne on 10/3/13.
  */
-public class EventLoader {
+public class EventLoader extends AsyncTask<Void,Void,ArrayList<Event>> {
 
     private JSONArray events;
     private JSONArray favorites;
@@ -35,15 +39,15 @@ public class EventLoader {
     private ArrayList<Event> eventList;
     private ArrayList<Event> eventListFiltered;
     private ArrayList<Event> eventListFavorites;
-    private Context context;
+    private MainActivity context;
 
-    public EventLoader(Context context) {
+    public EventLoader(MainActivity context) {
         this.eventList = new ArrayList<Event>();
         this.context = context;
-        this.update();
+//        this.execute();
     }
 
-    public void update() {
+    public ArrayList<Event> update() {
         this.filtered = false;
         this.eventList.clear();
         try {
@@ -76,10 +80,11 @@ public class EventLoader {
             }
 
             this.events = new JSONArray(jString);
-            this.readJSONArray();
+            return this.readJSONArray();
         } catch (Exception e) {
             Log.v("bmelder", e.getMessage());
         }
+        return null;
     }
 
     public ArrayList<Event> getEvents(Date date) {
@@ -87,10 +92,11 @@ public class EventLoader {
         ArrayList<Event> events = this.eventList;
         if (this.filtered) events = this.eventListFiltered;
         if (this.favorited) events = this.eventListFavorites;
+        if (events != null) {
         for (Event e: events) {
             if (e.getDate().equals(date))
                 dayList.add(e);
-        }
+        }}
 
         return dayList;
     }
@@ -139,11 +145,11 @@ public class EventLoader {
         return new ArrayList<Date>(dates);
     }
 
-    private void readJSONArray() {
+    private ArrayList<Event> readJSONArray() {
+        ArrayList<Event> events = new ArrayList<Event>();
         try {
             ArrayList<Integer> favs = new ArrayList<Integer>();
             if (this.favorites != null) {
-
                 for (int i = 0; i < this.favorites.length(); i++) {
                     favs.add(this.favorites.getInt(i));
                 }
@@ -177,12 +183,13 @@ public class EventLoader {
                     e.setLinks(this.parseLinks(jo.getJSONArray("links")));
                 if (!jo.isNull("type"))
                     e.setType(this.parseCategories(jo.getJSONArray("type")));
-                this.eventList.add(e);
+                events.add(e);
             }
         } catch (Exception e) {
             Log.v("bmelder", e.getMessage());
         }
 
+        return events;
     }
 
 
@@ -235,6 +242,22 @@ public class EventLoader {
             loc.setCategories(this.parseCategories(location.getJSONArray("category")));
 
         return loc;
+    }
+
+    protected void onPreExecute() {
+        context.showProgress();
+    }
+
+    @Override
+    protected ArrayList<Event> doInBackground(Void... params) {
+        return this.update();
+    }
+
+    protected void onPostExecute(ArrayList<Event> events) {
+        this.eventList = events;
+        context.initFilerLoader();
+        context.showList();
+        context.updateView();
     }
 }
 

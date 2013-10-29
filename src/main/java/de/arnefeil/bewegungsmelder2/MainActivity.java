@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,8 +24,11 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -43,13 +48,19 @@ public class MainActivity extends ActionBarActivity {
     private Menu menu;
     private ArrayList<Date> dates;
     private int[] dialogSize;
-
+    private FrameLayout progessView;
+    private TextView mTextViewProgress;
     ViewPager viewPager;
     EventsPageAdapter eventsPageAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_main);
+        this.viewPager = (ViewPager) findViewById(R.id.pager);
+        this.progessView = (FrameLayout) findViewById(R.id.fl_loading_circle);
+        this.mTextViewProgress = (TextView) findViewById(R.id.tv_progress);
+        showProgress();
 
         this.eventLoader = new EventLoader(this);
         this.dates = this.eventLoader.getDates();
@@ -57,23 +68,46 @@ public class MainActivity extends ActionBarActivity {
         this.favoriteLoader = new FavoriteLoader(this);
 
         this.eventsPageAdapter = new EventsPageAdapter(getSupportFragmentManager());
-        this.viewPager = (ViewPager) findViewById(R.id.pager);
         this.viewPager.setAdapter(this.eventsPageAdapter);
-
         this.switchToPage(Date.today());
         this.getSupportActionBar().setTitle("Events");
-        //this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#444444")));
         this.checkUpdateTimer();
         this.setDialogSize();
+        this.eventLoader.execute();
+    }
+
+    public void updateEvents() {
+        this.eventLoader = new EventLoader(this);
+        eventLoader.execute();
+    }
+
+    public void setProgressText(String message) {
+        mTextViewProgress.setText(message);
+    }
+
+    public void showProgress() {
+        this.viewPager.setVisibility(View.GONE);
+        this.progessView.setVisibility(View.VISIBLE);
+    }
+
+    public void showList() {
+        this.viewPager.setVisibility(View.VISIBLE);
+        this.progessView.setVisibility(View.GONE);
+    }
+
+    public void initFilerLoader() {
+        this.filterLoader = new FilterLoader(this);
     }
 
     public void updateView() {
-        int oldPos = this.viewPager.getCurrentItem();
+        //this.filterLoader = new FilterLoader(this);
+        this.viewPager.setCurrentItem(0);
         this.dates = this.eventLoader.getDates();
         this.viewPager.getAdapter().notifyDataSetChanged();
-        if (oldPos-1 > this.dates.size()) {
-            this.viewPager.setCurrentItem(0);
-        }
+        this.switchToPage(Date.today());
+    }
+    public void updateList() {
+        this.viewPager.getAdapter().notifyDataSetChanged();
     }
 
     public void changeFavIcon() {

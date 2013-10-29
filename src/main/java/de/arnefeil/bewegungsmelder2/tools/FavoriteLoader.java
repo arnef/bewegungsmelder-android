@@ -41,9 +41,11 @@ public class FavoriteLoader {
         }
         this.mainActivity.changeFavIcon();
         this.mainActivity.updateView();
+        this.saveFavorites();
     }
 
     public void setFavorites(ArrayList<Event> events) {
+        this.favorites = new HashSet<Event>();
         for (Event e: events) {
             if (e.isFavorite()) this.favorites.add(e);
         }
