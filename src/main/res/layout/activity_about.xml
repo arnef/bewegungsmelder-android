@@ -45,7 +45,8 @@
         android:id="@+id/tvDescription"
         android:paddingTop="40dp"
         android:paddingLeft="30dp"
-        android:paddingRight="30dp" />
+        android:paddingRight="30dp"
+        android:autoLink="web" />
 
 </RelativeLayout>
 </ScrollView>

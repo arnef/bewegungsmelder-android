@@ -15,6 +15,6 @@
     <string name="button_save">Speichern</string>
     <string name="button_cancel">Abbrechen</string>
     <string name="title_activity_about">Über die App</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="title_no_event_today">Nix los heute...</string>
 
 </resources>

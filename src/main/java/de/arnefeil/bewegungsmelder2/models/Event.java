@@ -21,6 +21,14 @@ public class Event {
     private List<String> type;
     private boolean cancelled;
     private boolean favorite;
+    private boolean isABlank = false;
+
+    public void setIsABlank(boolean isABlank) {
+        this.isABlank = isABlank;
+    }
+    public boolean getIsABlank() {
+        return this.isABlank;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -59,7 +67,7 @@ public class Event {
     }
 
     public void setPrice(String price) {
-        this.price = price;
+        this.price = price.replace("/", "\n");
     }
 
     public void setDescriiptionExtras(String descriiptionExtras) {

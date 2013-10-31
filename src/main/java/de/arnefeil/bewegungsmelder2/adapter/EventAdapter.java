@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -53,14 +55,16 @@ public class EventAdapter extends ArrayAdapter<Event> {
     private View eventsView(int position, View convertView, ViewGroup parant) {
         View v = convertView;
 
+
+
         if (v == null) {
             LayoutInflater inflater = (LayoutInflater) getContext()
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = inflater.inflate(R.layout.listview_event, null);
         }
+        this.setRegsiter(v);
 
         final Event event = this.events.get(position);
-        this.setRegsiter(v);
         if (event != null) {
             if (this.tvTitle != null) {
                 RelativeLayout rl = (RelativeLayout) v.findViewById(R.id.eventback);
@@ -75,32 +79,26 @@ public class EventAdapter extends ArrayAdapter<Event> {
             if (this.tvLocation != null) {
                 if (event.getLocation() != null)
                     this.tvLocation.setText(event.getLocation().getTitle());
-                else this.tvLocation.setHeight(1);
+                else this.tvLocation.setText(null);
             }
             if (this.tvPrice != null) {
-                if (event.getPrice() != null)
                     this.tvPrice.setText(event.getPrice());
-                else this.tvPrice.setText("");
             }
             if (this.tvTimeStart != null) {
                 if (event.getTimeStart() != null)
                     this.tvTimeStart.setText(event.getTimeStart().toString());
-                else this.tvTimeStart.setText("");
+                else this.tvTimeStart.setText(null);
             }
             if (this.tvTimeEntry != null) {
                 if (event.getTimeEntry() != null)
                     this.tvTimeEntry.setText(event.getTimeEntry().toString());
-                else this.tvTimeEntry.setText("");
+                else this.tvTimeEntry.setText(null);
             }
             if (this.tvDescription != null) {
-                if (event.getDescription() != null)
                     this.tvDescription.setText(event.getDescription());
-                else this.tvDescription.setHeight(1);
             }
             if (this.tvDescriptionExtra != null) {
-                if (event.getDescriiptionExtras() != null)
                     this.tvDescriptionExtra.setText(event.getDescriiptionExtras());
-                else this.tvDescriptionExtra.setHeight(1);
             }
             if (this.tvLinks != null) {
                 this.tvLinks.setMovementMethod(LinkMovementMethod.getInstance());
@@ -110,7 +108,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
                         links = "<a href=\"" + link.getUrl() + "\">"  + link.getTitle() + "</a><br>";
                     }
                     this.tvLinks.setText(Html.fromHtml(links));
-                } else this.tvLinks.setHeight(1);
+                } else this.tvLinks.setText(null);
             }
             if (this.tvBands != null) {
                 this.tvBands.removeAllViews();
@@ -159,6 +157,12 @@ public class EventAdapter extends ArrayAdapter<Event> {
                     );
                 }
 
+                if (event.getIsABlank()) {
+                    this.ivFavorite.setVisibility(View.GONE);
+                    RelativeLayout rl = (RelativeLayout) v.findViewById(R.id.eventback);
+                    rl.setBackgroundColor(Color.parseColor("#444444"));
+                }
+
                 this.ivFavorite.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -186,8 +190,6 @@ public class EventAdapter extends ArrayAdapter<Event> {
                         lvCategories.addView(cat);
 
                     }
-                    //types = types.substring(0, types.length() - 2);
-                    //this.tvCategories.setText(Html.fromHtml(types));
                 }
             }
 

@@ -20,6 +20,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import de.arnefeil.bewegungsmelder2.MainActivity;
+import de.arnefeil.bewegungsmelder2.R;
 import de.arnefeil.bewegungsmelder2.models.Band;
 import de.arnefeil.bewegungsmelder2.models.Date;
 import de.arnefeil.bewegungsmelder2.models.Event;
@@ -44,7 +45,6 @@ public class EventLoader extends AsyncTask<Void,Void,ArrayList<Event>> {
     public EventLoader(MainActivity context) {
         this.eventList = new ArrayList<Event>();
         this.context = context;
-//        this.execute();
     }
 
     public ArrayList<Event> update() {
@@ -93,10 +93,18 @@ public class EventLoader extends AsyncTask<Void,Void,ArrayList<Event>> {
         if (this.filtered) events = this.eventListFiltered;
         if (this.favorited) events = this.eventListFavorites;
         if (events != null) {
-        for (Event e: events) {
-            if (e.getDate().equals(date))
-                dayList.add(e);
-        }}
+            for (Event e: events) {
+                if (e.getDate().equals(date))
+                    dayList.add(e);
+            }
+
+        }
+        if (dayList.size() == 0) {
+            Event e = new Event();
+            e.setTitle(context.getString(R.string.title_no_event_today));
+            e.setIsABlank(true);
+            dayList.add(e);
+        }
 
         return dayList;
     }
@@ -138,8 +146,8 @@ public class EventLoader extends AsyncTask<Void,Void,ArrayList<Event>> {
         ArrayList<Event> events = this.eventList;
         if (this.filtered) events = this.eventListFiltered;
         if (this.favorited) events = this.eventListFavorites;
-        if (events == null || events.size() == 0) dates.add(Date.today());
-        else for (Event e: events)
+        dates.add(Date.today());
+        for (Event e: events)
             dates.add(e.getDate());
 
         return new ArrayList<Date>(dates);

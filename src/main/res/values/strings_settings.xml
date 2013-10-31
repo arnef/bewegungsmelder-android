@@ -22,9 +22,9 @@
     </string-array>
 
     <string name="pref_title_version">Version keine Angabe</string>
-    <string name="pref_default_version">Die Inhalte für diese App stammen von bewegungsmelder.org!
+    <string name="pref_default_version">Die Inhalte für diese App stammen von <a href="http://www.bewegungsmelder.org">bewegungsmelder.org!</a>
         \nSollte es inhaltiche Fehler geben, übernehme ich keine Verantortung dafür, ebenso für die Inhalte der Links.
-        \n\nBei Problemen mit der App, gibt es Support über arnefeil.de</string>
+        \n\nBei Problemen mit der App, gibt es Support über <a href="http://terakx.de/support">terakx.de/support</a></string>
 
     <string name="pref_title_about">Über die App</string>
 </resources>
