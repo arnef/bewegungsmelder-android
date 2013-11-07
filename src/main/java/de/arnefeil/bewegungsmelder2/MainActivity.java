@@ -100,7 +100,6 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void updateView() {
-        //this.filterLoader = new FilterLoader(this);
         this.viewPager.setCurrentItem(0);
         this.dates = this.eventLoader.getDates();
         this.viewPager.getAdapter().notifyDataSetChanged();

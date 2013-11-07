@@ -31,10 +31,9 @@ import de.arnefeil.bewegungsmelder2.models.Date;
 public class UpdateChecker extends AsyncTask<Void, Void, String> {
 
     private MainActivity mainActivity;
-    private ProgressDialog progressDialog;
-    private final String url = "http://192.168.1.17/~arne/bmelderAPI/getEvents.php?updateCheck";
+    //private final String url = "http://192.168.1.17/~arne/bmelderAPI/getEvents.php?updateCheck";
     //private final String url = "http://10.0.2.2/~arne/bmelderAPI/getEvents.php?updateCheck";
-    //private final String url = "http://www.yomena.com/test/bewegungsmelder/android/getEvents.php?updateCheck";
+    private final String url = "http://www.yomena.com/test/bewegungsmelder/android/getEvents.php?updateCheck";
 
     public UpdateChecker(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
@@ -45,7 +44,7 @@ public class UpdateChecker extends AsyncTask<Void, Void, String> {
         if (file.exists()) {
             Log.v("bmelder", this.md5sum(file));
             if (!this.md5sum(file).equals(webMd5)) {
-                new EventDownloader(this.mainActivity, this.progressDialog).execute();
+                new EventDownloader(this.mainActivity).execute();
             } else {
                 SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this.mainActivity).edit();
                 Date today = Date.today();
@@ -63,7 +62,7 @@ public class UpdateChecker extends AsyncTask<Void, Void, String> {
                 }, 1500);
             }
         } else {
-            new EventDownloader(this.mainActivity, this.progressDialog).execute();
+            new EventDownloader(this.mainActivity).execute();
         }
     }
 
@@ -97,10 +96,6 @@ public class UpdateChecker extends AsyncTask<Void, Void, String> {
     }
 
     protected void onPreExecute() {
-        /*this.progressDialog = new ProgressDialog(this.mainActivity);
-        this.progressDialog.setMessage(this.mainActivity.getString(R.string.text_search_for_update));
-        this.progressDialog.setCancelable(false);
-        this.progressDialog.show();*/
         this.mainActivity.showProgress();
         this.mainActivity.setProgressText(
                 this.mainActivity.getString(R.string.text_search_for_update)

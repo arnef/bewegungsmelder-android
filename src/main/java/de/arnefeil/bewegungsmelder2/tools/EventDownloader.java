@@ -22,15 +22,13 @@ import de.arnefeil.bewegungsmelder2.models.Date;
  */
 public class EventDownloader extends AsyncTask<Void, Void, Boolean> {
 
-    private ProgressDialog progressDialog;
     private MainActivity mainActivity;
-    private final String url = "http://192.168.1.17/~arne/bmelderAPI/getEvents.php?downloadEvents";
+    //private final String url = "http://192.168.1.17/~arne/bmelderAPI/getEvents.php?downloadEvents";
     //private final String url = "http://10.0.2.2/~arne/bmelderAPI/getEvents.php?downloadEvents";
-    //private final String url = "http://www.yomena.com/test/bewegungsmelder/android/getEvents.php?downloadEvents";
+    private final String url = "http://www.yomena.com/test/bewegungsmelder/android/getEvents.php?downloadEvents";
 
-    public EventDownloader(MainActivity mainActivity, ProgressDialog progressDialog) {
+    public EventDownloader(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
-        this.progressDialog = progressDialog;
     }
 
     protected void onPreExecute() {
@@ -73,12 +71,8 @@ public class EventDownloader extends AsyncTask<Void, Void, Boolean> {
             String date = today.getYear() + "-" + today.getMonth() + "-" + today.getDay();
             editor.putString("last_sync", date);
             editor.commit();
-
-
-//            this.mainActivity.showList();
-//            this.mainActivity.updateView();
         } else {
-            this.progressDialog.setMessage(this.mainActivity.getString(
+            mainActivity.setProgressText(this.mainActivity.getString(
                     R.string.text_update_error
             ));
         }
