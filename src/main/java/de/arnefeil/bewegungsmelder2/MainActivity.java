@@ -55,7 +55,6 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_main);
         this.viewPager = (ViewPager) findViewById(R.id.pager);
         this.progessView = (FrameLayout) findViewById(R.id.fl_loading_circle);
@@ -75,6 +74,7 @@ public class MainActivity extends ActionBarActivity {
         this.setDialogSize();
         this.eventLoader.execute();
     }
+
 
     public void updateEvents() {
         this.eventLoader = new EventLoader(this);

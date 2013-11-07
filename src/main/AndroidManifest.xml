@@ -15,6 +15,7 @@
         android:theme="@style/Theme.Myactionbar" >
         <activity
             android:name="de.arnefeil.bewegungsmelder2.MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
