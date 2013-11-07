@@ -147,13 +147,15 @@ public class EventLoader extends AsyncTask<Void,Void,ArrayList<Event>> {
         if (this.filtered) events = this.eventListFiltered;
         if (this.favorited) events = this.eventListFavorites;
         dates.add(Date.today());
-        for (Event e: events)
-            dates.add(e.getDate());
+        if (events != null) {
+            for (Event e: events)
+                dates.add(e.getDate());
+        }
 
         return new ArrayList<Date>(dates);
     }
 
-    private ArrayList<Event> readJSONArray() {
+    private ArrayList<Event> readJSONArray()  {
         ArrayList<Event> events = new ArrayList<Event>();
         try {
             ArrayList<Integer> favs = new ArrayList<Integer>();

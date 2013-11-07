@@ -111,13 +111,14 @@
             android:layout_toLeftOf="@+id/ll_left_time_price"
             android:textColor="#ffffee" />
 
-        <TableLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:id="@+id/tableBands"
             android:layout_below="@+id/tvLinks"
             android:layout_toLeftOf="@+id/ll_left_time_price"
-            android:layout_alignLeft="@+id/tvLinks"></TableLayout>
+            android:layout_alignLeft="@+id/tvLinks"></LinearLayout>
 
         <TextView
             android:layout_width="match_parent"

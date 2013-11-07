@@ -24,9 +24,9 @@ public class EventDownloader extends AsyncTask<Void, Void, Boolean> {
 
     private ProgressDialog progressDialog;
     private MainActivity mainActivity;
-    private final String url = "http://192.168.1.17/~arne/bmelderAPI/getEvents.php?downloadEvents";
+    //private final String url = "http://192.168.1.17/~arne/bmelderAPI/getEvents.php?downloadEvents";
     //private final String url = "http://10.0.2.2/~arne/bmelderAPI/getEvents.php?downloadEvents";
-    //private final String url = "http://www.yomena.com/test/bewegungsmelder/android/getEvents.php?downloadEvents";
+    private final String url = "http://www.yomena.com/test/bewegungsmelder/android/getEvents.php?downloadEvents";
 
     public EventDownloader(MainActivity mainActivity, ProgressDialog progressDialog) {
         this.mainActivity = mainActivity;

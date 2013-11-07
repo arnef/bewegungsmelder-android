@@ -40,7 +40,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
     private TextView tvDescription;
     private TextView tvDescriptionExtra;
     private TextView tvLinks;
-    private TableLayout tvBands;
+    private LinearLayout tvBands;
     private ImageView ivFavorite;
     private LinearLayout lvCategories;
     private MainActivity mainActivity;
@@ -113,36 +113,33 @@ public class EventAdapter extends ArrayAdapter<Event> {
             if (this.tvBands != null) {
                 this.tvBands.removeAllViews();
                 if (event.getBands() != null) {
-                    TextView tvHead = new TextView(this.mainActivity);
+                    /*TextView tvHead = new TextView(this.mainActivity);
                     tvHead.setTextAppearance(this.mainActivity, android.R.style.TextAppearance_Medium);
                     tvHead.setTextColor(Color.BLACK);
                     tvHead.setText("Artists");
                     TableRow trHead = new TableRow(this.mainActivity);
                     trHead.addView(tvHead);
-                    this.tvBands.addView(trHead);
+                    this.tvBands.addView(trHead);*/
                     for (Band band: event.getBands()) {
                         String bandDescription = band.getTitle();
-                        TableRow bandrow = new TableRow(this.mainActivity);
+                        //TableRow bandrow = new TableRow(this.mainActivity);
                         TextView bandTitle = new TextView(this.mainActivity);
-                        bandTitle.setTextColor(Color.BLACK);
-                        TableRow.LayoutParams params = new TableRow.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f);
-                        bandTitle.setLayoutParams(params);
-                        TextView bandLinks = new TextView(this.mainActivity);
-                        bandLinks.setGravity(Gravity.RIGHT);
+                        bandTitle.setTextColor(Color.parseColor("#ffffee"));
+                        bandTitle.setLinkTextColor(Color.parseColor("#C7C649"));
+
+
                         if (band.getDescription() != null)
-                            bandDescription += "\n" + band.getDescription();
+                            bandDescription += "&emsp;<small>" + band.getDescription() + "</small>";
                         if (band.getLinks() != null) {
-                            String links = "";
+                            String links = "<br>";
                             for (Link link: band.getLinks()) {
-                                links += "<a href=\"" + link.getUrl() + "\">" + link.getTitle() + "</a><br>";
+                                links += "<a href=\"" + link.getUrl() + "\">" + link.getTitle() + "</a>&emsp;";
                             }
-                            bandLinks.setMovementMethod(LinkMovementMethod.getInstance());
-                            bandLinks.setText(Html.fromHtml(links));
+                            bandDescription += links;
                         }
-                        bandrow.addView(bandTitle);
-                        bandrow.addView(bandLinks);
-                        bandTitle.setText(bandDescription);
-                        this.tvBands.addView(bandrow);
+                        bandTitle.setText(Html.fromHtml(bandDescription));
+                        bandTitle.setPadding(0,0,0,5);
+                        tvBands.addView(bandTitle);
                     }
                 }
             }
@@ -213,7 +210,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
         this.tvDescription = (TextView) v.findViewById(R.id.tvDescription);
         this.tvDescriptionExtra = (TextView) v.findViewById(R.id.tvDescriptionExtra);
         this.tvLinks = (TextView) v.findViewById(R.id.tvLinks);
-        this.tvBands = (TableLayout) v.findViewById(R.id.tableBands);
+        this.tvBands = (LinearLayout) v.findViewById(R.id.tableBands);
         this.ivFavorite = (ImageView) v.findViewById(R.id.iv_favorite);
         this.lvCategories = (LinearLayout) v.findViewById(R.id.ll_categories);
     }
