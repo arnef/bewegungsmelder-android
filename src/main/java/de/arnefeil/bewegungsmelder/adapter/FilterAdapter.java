@@ -1,4 +1,4 @@
-package de.arnefeil.bewegungsmelder2.adapter;
+package de.arnefeil.bewegungsmelder.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,9 +9,9 @@ import android.widget.CheckedTextView;
 
 import java.util.ArrayList;
 
-import de.arnefeil.bewegungsmelder2.models.Band;
-import de.arnefeil.bewegungsmelder2.models.Filter;
-import de.arnefeil.bewegungsmelder2.models.Location;
+import de.arnefeil.bewegungsmelder.models.Band;
+import de.arnefeil.bewegungsmelder.models.Filter;
+import de.arnefeil.bewegungsmelder.models.Location;
 
 /**
  * Created by arne on 10/3/13.

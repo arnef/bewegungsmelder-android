@@ -1,10 +1,7 @@
-package de.arnefeil.bewegungsmelder2.tools;
+package de.arnefeil.bewegungsmelder.tools;
 
-import android.app.Dialog;
-import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -19,14 +16,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import de.arnefeil.bewegungsmelder2.MainActivity;
-import de.arnefeil.bewegungsmelder2.R;
-import de.arnefeil.bewegungsmelder2.models.Band;
-import de.arnefeil.bewegungsmelder2.models.Date;
-import de.arnefeil.bewegungsmelder2.models.Event;
-import de.arnefeil.bewegungsmelder2.models.Link;
-import de.arnefeil.bewegungsmelder2.models.Location;
-import de.arnefeil.bewegungsmelder2.models.Time;
+import de.arnefeil.bewegungsmelder.MainActivity;
+import de.arnefeil.bewegungsmelder.R;
+import de.arnefeil.bewegungsmelder.models.Band;
+import de.arnefeil.bewegungsmelder.models.Date;
+import de.arnefeil.bewegungsmelder.models.Event;
+import de.arnefeil.bewegungsmelder.models.Link;
+import de.arnefeil.bewegungsmelder.models.Location;
+import de.arnefeil.bewegungsmelder.models.Time;
 
 /**
  * Created by arne on 10/3/13.

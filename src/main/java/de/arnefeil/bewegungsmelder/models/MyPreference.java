@@ -1,4 +1,4 @@
-package de.arnefeil.bewegungsmelder2.models;
+package de.arnefeil.bewegungsmelder.models;
 
 /**
  * Created by arne on 10/5/13.

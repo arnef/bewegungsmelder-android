@@ -1,11 +1,9 @@
-package de.arnefeil.bewegungsmelder2.adapter;
+package de.arnefeil.bewegungsmelder.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,18 +11,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import de.arnefeil.bewegungsmelder2.MainActivity;
-import de.arnefeil.bewegungsmelder2.R;
-import de.arnefeil.bewegungsmelder2.models.Band;
-import de.arnefeil.bewegungsmelder2.models.Event;
-import de.arnefeil.bewegungsmelder2.models.Link;
+import de.arnefeil.bewegungsmelder.MainActivity;
+import de.arnefeil.bewegungsmelder.R;
+import de.arnefeil.bewegungsmelder.models.Band;
+import de.arnefeil.bewegungsmelder.models.Event;
+import de.arnefeil.bewegungsmelder.models.Link;
 
 /**
  * Created by arne on 10/3/13.

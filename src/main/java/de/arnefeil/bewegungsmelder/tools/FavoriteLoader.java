@@ -1,4 +1,4 @@
-package de.arnefeil.bewegungsmelder2.tools;
+package de.arnefeil.bewegungsmelder.tools;
 
 import android.util.Log;
 
@@ -9,8 +9,8 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import de.arnefeil.bewegungsmelder2.MainActivity;
-import de.arnefeil.bewegungsmelder2.models.Event;
+import de.arnefeil.bewegungsmelder.MainActivity;
+import de.arnefeil.bewegungsmelder.models.Event;
 
 /**
  * Created by arne on 10/3/13.
@@ -46,8 +46,10 @@ public class FavoriteLoader {
 
     public void setFavorites(ArrayList<Event> events) {
         this.favorites = new HashSet<Event>();
-        for (Event e: events) {
-            if (e.isFavorite()) this.favorites.add(e);
+        if (events != null) {
+            for (Event e: events) {
+                if (e.isFavorite()) this.favorites.add(e);
+            }
         }
     }
 

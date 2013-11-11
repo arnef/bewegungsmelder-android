@@ -1,6 +1,5 @@
-package de.arnefeil.bewegungsmelder2.tools;
+package de.arnefeil.bewegungsmelder.tools;
 
-import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Handler;
@@ -21,9 +20,9 @@ import java.io.InputStreamReader;
 import java.net.URI;
 import java.security.MessageDigest;
 
-import de.arnefeil.bewegungsmelder2.MainActivity;
-import de.arnefeil.bewegungsmelder2.R;
-import de.arnefeil.bewegungsmelder2.models.Date;
+import de.arnefeil.bewegungsmelder.MainActivity;
+import de.arnefeil.bewegungsmelder.R;
+import de.arnefeil.bewegungsmelder.models.Date;
 
 /**
  * Created by arne on 10/3/13.

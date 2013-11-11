@@ -1,4 +1,4 @@
-package de.arnefeil.bewegungsmelder2.tools;
+package de.arnefeil.bewegungsmelder.tools;
 
 import android.app.Dialog;
 import android.util.Log;
@@ -14,13 +14,13 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
-import de.arnefeil.bewegungsmelder2.MainActivity;
-import de.arnefeil.bewegungsmelder2.R;
-import de.arnefeil.bewegungsmelder2.adapter.FilterAdapter;
-import de.arnefeil.bewegungsmelder2.models.Band;
-import de.arnefeil.bewegungsmelder2.models.Event;
-import de.arnefeil.bewegungsmelder2.models.Filter;
-import de.arnefeil.bewegungsmelder2.models.Location;
+import de.arnefeil.bewegungsmelder.MainActivity;
+import de.arnefeil.bewegungsmelder.R;
+import de.arnefeil.bewegungsmelder.adapter.FilterAdapter;
+import de.arnefeil.bewegungsmelder.models.Band;
+import de.arnefeil.bewegungsmelder.models.Event;
+import de.arnefeil.bewegungsmelder.models.Filter;
+import de.arnefeil.bewegungsmelder.models.Location;
 
 /**
  * Created by arne on 10/3/13.

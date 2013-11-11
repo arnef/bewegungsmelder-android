@@ -1,13 +1,9 @@
-package de.arnefeil.bewegungsmelder2;
+package de.arnefeil.bewegungsmelder;
 
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.Rect;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -15,7 +11,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,18 +22,17 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import de.arnefeil.bewegungsmelder2.adapter.EventAdapter;
-import de.arnefeil.bewegungsmelder2.models.Date;
-import de.arnefeil.bewegungsmelder2.models.Event;
-import de.arnefeil.bewegungsmelder2.tools.EventLoader;
-import de.arnefeil.bewegungsmelder2.tools.FavoriteLoader;
-import de.arnefeil.bewegungsmelder2.tools.FilterLoader;
-import de.arnefeil.bewegungsmelder2.tools.UpdateChecker;
+import de.arnefeil.bewegungsmelder.adapter.EventAdapter;
+import de.arnefeil.bewegungsmelder.models.Date;
+import de.arnefeil.bewegungsmelder.models.Event;
+import de.arnefeil.bewegungsmelder.tools.EventLoader;
+import de.arnefeil.bewegungsmelder.tools.FavoriteLoader;
+import de.arnefeil.bewegungsmelder.tools.FilterLoader;
+import de.arnefeil.bewegungsmelder.tools.UpdateChecker;
 
 public class MainActivity extends ActionBarActivity {
 

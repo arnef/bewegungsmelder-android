@@ -1,4 +1,4 @@
-package de.arnefeil.bewegungsmelder2;
+package de.arnefeil.bewegungsmelder;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -21,7 +21,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import de.arnefeil.bewegungsmelder2.models.MyPreference;
+import de.arnefeil.bewegungsmelder.models.MyPreference;
 
 /**
  * Created by arne on 10/3/13.

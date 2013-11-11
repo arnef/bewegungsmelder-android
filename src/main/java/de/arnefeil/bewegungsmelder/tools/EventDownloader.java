@@ -1,6 +1,5 @@
-package de.arnefeil.bewegungsmelder2.tools;
+package de.arnefeil.bewegungsmelder.tools;
 
-import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Handler;
@@ -13,9 +12,9 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
-import de.arnefeil.bewegungsmelder2.MainActivity;
-import de.arnefeil.bewegungsmelder2.R;
-import de.arnefeil.bewegungsmelder2.models.Date;
+import de.arnefeil.bewegungsmelder.MainActivity;
+import de.arnefeil.bewegungsmelder.R;
+import de.arnefeil.bewegungsmelder.models.Date;
 
 /**
  * Created by arne on 10/3/13.
@@ -25,7 +24,8 @@ public class EventDownloader extends AsyncTask<Void, Void, Boolean> {
     private MainActivity mainActivity;
     //private final String url = "http://192.168.1.17/~arne/bmelderAPI/getEvents.php?downloadEvents";
     //private final String url = "http://10.0.2.2/~arne/bmelderAPI/getEvents.php?downloadEvents";
-    private final String url = "http://www.yomena.com/test/bewegungsmelder/android/getEvents.php?downloadEvents";
+    private final String url =
+            "http://www.yomena.com/test/bewegungsmelder/android/getEvents.php?downloadEvents";
 
     public EventDownloader(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
@@ -66,7 +66,8 @@ public class EventDownloader extends AsyncTask<Void, Void, Boolean> {
             mainActivity.setProgressText(this.mainActivity.getString(
                     R.string.text_update_success
             ));
-            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this.mainActivity).edit();
+            SharedPreferences.Editor editor = PreferenceManager
+                    .getDefaultSharedPreferences(this.mainActivity).edit();
             Date today = Date.today();
             String date = today.getYear() + "-" + today.getMonth() + "-" + today.getDay();
             editor.putString("last_sync", date);
