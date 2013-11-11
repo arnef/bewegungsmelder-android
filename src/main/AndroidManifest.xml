@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.arnefeil.bewegungsmelder"
-    android:versionCode="131101"
-    android:versionName="1.9.6 beta 2" >
+    android:versionCode="131111"
+    android:versionName="1.9.7 beta 2" >
 
     <uses-sdk
         android:minSdkVersion="7"
