@@ -30,9 +30,9 @@ import de.arnefeil.bewegungsmelder.models.Date;
 public class UpdateChecker extends AsyncTask<Void, Void, String> {
 
     private MainActivity mainActivity;
-    //private final String url = "http://192.168.1.17/~arne/bmelderAPI/getEvents.php?updateCheck";
+    //private final String url = "http://192.168.1.23/getEvents.php?updateCheck";
     //private final String url = "http://10.0.2.2/~arne/bmelderAPI/getEvents.php?updateCheck";
-    private final String url = "http://www.yomena.com/test/bewegungsmelder/android/getEvents.php?updateCheck";
+    private final String url = "http://bewegungsmelder.nadir.org/android/getEvents.php?updateCheck";
 
     public UpdateChecker(MainActivity mainActivity) {
         this.mainActivity = mainActivity;

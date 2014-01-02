@@ -56,7 +56,9 @@ public class MainActivity extends ActionBarActivity {
         showProgress();
 
         this.eventLoader = new EventLoader(this);
-        this.dates = this.eventLoader.getDates();
+        //this.dates = this.eventLoader.getDates();
+        this.dates = new ArrayList<Date>();
+        this.dates.add(Date.today());
         this.filterLoader = new FilterLoader(this);
         this.favoriteLoader = new FavoriteLoader(this);
 

@@ -12,8 +12,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
         android:clickable="false"
-        android:background="#444"
-        android:divider="#444"
+        android:background="@drawable/nice_back"
+        android:divider="@drawable/nice_back"
         android:dividerHeight="0px" />
 
 </RelativeLayout>

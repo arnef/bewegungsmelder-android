@@ -20,7 +20,7 @@
 <resources>
 
     <style name="Theme.Myactionbar" parent="@style/Theme.AppCompat.Light.DarkActionBar">
-        <item name="actionBarItemBackground">@drawable/selectable_background_myactionbar</item>
+        <item name="actionBarItemBackground">@drawable/nice_back</item>
         <item name="popupMenuStyle">@style/PopupMenu.Myactionbar</item>
         <item name="dropDownListViewStyle">@style/DropDownListView.Myactionbar</item>
         <item name="actionBarTabStyle">@style/ActionBarTabStyle.Myactionbar</item>

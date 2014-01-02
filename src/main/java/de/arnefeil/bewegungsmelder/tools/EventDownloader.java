@@ -22,10 +22,10 @@ import de.arnefeil.bewegungsmelder.models.Date;
 public class EventDownloader extends AsyncTask<Void, Void, Boolean> {
 
     private MainActivity mainActivity;
-    //private final String url = "http://192.168.1.17/~arne/bmelderAPI/getEvents.php?downloadEvents";
+    //private final String url = "http://192.168.1.23/getEvents.php?downloadEvents";
     //private final String url = "http://10.0.2.2/~arne/bmelderAPI/getEvents.php?downloadEvents";
     private final String url =
-            "http://www.yomena.com/test/bewegungsmelder/android/getEvents.php?downloadEvents";
+            "http://bewegungsmelder.nadir.org/android/getEvents.php?downloadEvents";
 
     public EventDownloader(MainActivity mainActivity) {
         this.mainActivity = mainActivity;

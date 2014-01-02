@@ -68,7 +68,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
                     rl.setBackgroundColor(Color.parseColor("#593737"));
                 } else {
                     this.tvTitle.setText(event.getTitle());
-                    rl.setBackgroundColor(Color.parseColor("#373737"));
+                    rl.setBackgroundColor(Color.parseColor("#3c3c3c"));
                 }
             }
             if (this.tvLocation != null) {
@@ -103,6 +103,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
                         links = "<a href=\"" + link.getUrl() + "\">"  + link.getTitle() + "</a><br>";
                     }
                     this.tvLinks.setText(Html.fromHtml(links));
+                    this.tvLinks.setLinkTextColor(Color.parseColor("#C7C649"));
                 } else this.tvLinks.setText(null);
             }
             if (this.tvBands != null) {
@@ -152,7 +153,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
                 if (event.getIsABlank()) {
                     this.ivFavorite.setVisibility(View.GONE);
                     RelativeLayout rl = (RelativeLayout) v.findViewById(R.id.eventback);
-                    rl.setBackgroundColor(Color.parseColor("#444444"));
+                    rl.setBackground(mainActivity.getResources().getDrawable(R.drawable.nice_back));
                 }
 
                 this.ivFavorite.setOnClickListener(new View.OnClickListener() {

@@ -176,9 +176,9 @@ public class EventLoader extends AsyncTask<Void,Void,ArrayList<Event>> {
                 if (!jo.isNull("price"))
                     e.setPrice(jo.getString("price"));
                 if (!jo.isNull("timeEntry"))
-                    e.setTimeEntry(new Time(jo.getString("timeEntry")));
+                    e.setTimeEntry(new Time(jo.getInt("timeEntry")));
                 if (!jo.isNull("timeStart"))
-                    e.setTimeStart(new Time(jo.getString("timeStart")));
+                    e.setTimeStart(new Time(jo.getInt("timeStart")));
                 else e.setTimeStart(Time.allDayTime());
                 if (!jo.isNull("bands"))
                     e.setBands(this.parseBands(jo.getJSONArray("bands")));
@@ -257,7 +257,8 @@ public class EventLoader extends AsyncTask<Void,Void,ArrayList<Event>> {
 
     @Override
     protected ArrayList<Event> doInBackground(Void... params) {
-        return this.update();
+        ArrayList<Event> events = this.update();
+        return events;
     }
 
     protected void onPostExecute(ArrayList<Event> events) {
