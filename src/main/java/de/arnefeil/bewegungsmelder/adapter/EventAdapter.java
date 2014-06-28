@@ -69,7 +69,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
             if (event.getLinks() != null) {
                 String links = "";
                 for (Link link : event.getLinks()) {
-                    links = "<a href=\"" + link.getUrl() + "\">" + link.getTitle() + "</a><br>";
+                    links += "<a href=\"" + link.getUrl() + "\">" + link.getTitle() + "</a><br>";
                 }
                 viewHolder.tvLinks.setText(Html.fromHtml(links));
                 viewHolder.tvLinks.setLinkTextColor(Color.parseColor("#C7C649"));
