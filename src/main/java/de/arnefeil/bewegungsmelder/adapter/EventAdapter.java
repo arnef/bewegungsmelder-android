@@ -95,6 +95,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
                     }
                     bandTitle.setText(Html.fromHtml(bandDescription));
                     bandTitle.setPadding(0, 0, 0, 5);
+                    bandTitle.setMovementMethod(LinkMovementMethod.getInstance());
                     viewHolder.tvBands.addView(bandTitle);
                 }
             }
