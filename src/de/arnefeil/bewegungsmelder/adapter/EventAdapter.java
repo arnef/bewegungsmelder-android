@@ -102,30 +102,31 @@ public class EventAdapter extends ArrayAdapter<Event> {
                     viewHolder.tvBands.addView(bandTitle);
                 }
             }
-
-            viewHolder.ivCalendar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(Intent.ACTION_INSERT);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.setType("vnd.android.cursor.item/event");
-                    if (event.getTimeStart().isAllday())
-                        intent.putExtra("allDay", true);
-                    else if (event.getTimeStart() != null) {
-                        Calendar start = new GregorianCalendar(event.getDate().getYear(),
-                                event.getDate().getMonth()-1, event.getDate().getDay(),
-                                event.getTimeStart().getHours(), event.getTimeStart().getMinutes());
-                        intent.putExtra("beginTime", start.getTimeInMillis());
+            if (android.os.Build.VERSION.SDK_INT >= 14) {
+                viewHolder.ivCalendar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Intent.ACTION_INSERT);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.setType("vnd.android.cursor.item/event");
+                        if (event.getTimeStart().isAllday())
+                            intent.putExtra("allDay", true);
+                        else if (event.getTimeStart() != null) {
+                            Calendar start = new GregorianCalendar(event.getDate().getYear(),
+                                    event.getDate().getMonth() - 1, event.getDate().getDay(),
+                                    event.getTimeStart().getHours(), event.getTimeStart().getMinutes());
+                            intent.putExtra("beginTime", start.getTimeInMillis());
+                        }
+                        if (event.getTitle() != null)
+                            intent.putExtra("title", event.getTitle());
+                        if (event.getDescription() != null)
+                            intent.putExtra("description", event.getDescription());
+                        if (event.getLocation() != null)
+                            intent.putExtra("eventLocation", event.getLocation().getTitle());
+                        mainActivity.startActivity(intent);
                     }
-                    if (event.getTitle() != null)
-                        intent.putExtra("title", event.getTitle());
-                    if (event.getDescription() != null)
-                        intent.putExtra("description", event.getDescription());
-                    if (event.getLocation() != null)
-                        intent.putExtra( "eventLocation", event.getLocation().getTitle());
-                    mainActivity.startActivity(intent);
-                }
-            });
+                });
+            }
 
             viewHolder.ivFavorite.setImageDrawable(v.getResources().getDrawable(event.isFavorite()
                     ? R.drawable.rating_favorited
@@ -183,7 +184,8 @@ public class EventAdapter extends ArrayAdapter<Event> {
         viewHolder.tvLinks = (TextView) v.findViewById(R.id.tvLinks);
         viewHolder.tvBands = (LinearLayout) v.findViewById(R.id.tableBands);
         viewHolder.ivFavorite = (ImageView) v.findViewById(R.id.iv_favorite);
-        viewHolder.ivCalendar = (ImageView) v.findViewById(R.id.iv_calendar);
+        if (android.os.Build.VERSION.SDK_INT >= 14)
+            viewHolder.ivCalendar = (ImageView) v.findViewById(R.id.iv_calendar);
         viewHolder.lvCategories = (LinearLayout) v.findViewById(R.id.ll_categories);
         viewHolder.eventBackground = (RelativeLayout) v.findViewById(R.id.eventback);
         v.setTag(viewHolder);

@@ -51,8 +51,17 @@
             android:layout_height="32dp"
             android:id="@+id/iv_favorite"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
+            android:layout_toLeftOf="@+id/iv_calendar"
             android:src="@drawable/rating_favorite"
+            android:clickable="true" />
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:id="@+id/iv_calendar"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/calendar"
             android:clickable="true" />
 
 
