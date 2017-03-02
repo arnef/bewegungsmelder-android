@@ -56,7 +56,7 @@
             android:clickable="true" />
 
         <ImageView
-            android:layout_width="32dp"
+            android:layout_width="24dp"
             android:layout_height="32dp"
             android:id="@+id/iv_calendar"
             android:layout_alignParentTop="true"
