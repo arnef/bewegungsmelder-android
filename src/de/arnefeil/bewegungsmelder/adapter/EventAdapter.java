@@ -103,6 +103,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
                 }
             }
             if (android.os.Build.VERSION.SDK_INT >= 14) {
+                viewHolder.ivCalendar.setVisibility(event.getIsABlank() ? View.GONE : View.VISIBLE);
                 viewHolder.ivCalendar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
