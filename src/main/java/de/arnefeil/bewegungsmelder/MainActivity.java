@@ -1,5 +1,6 @@
 package de.arnefeil.bewegungsmelder;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -258,6 +259,7 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+    @SuppressLint("ValidFragment")
     public class EventsSectionFragment extends Fragment {
 
         public static final String ARG_SECTION_NUMBER = "section_number";
