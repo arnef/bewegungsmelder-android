@@ -61,4 +61,16 @@ public class Time {
             return hours + ":" + minutes;
         }
     }
+
+    public int getHours() {
+        return this.hours;
+    }
+
+    public int getMinutes() {
+        return this.minutes;
+    }
+
+    public boolean isAllday() {
+        return this.allday;
+    }
 }
