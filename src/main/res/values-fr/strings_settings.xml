@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pref_title_last_sync">Dernière Mise à Jour</string>
+    <string name="pref_default_last_sync">Aucune</string>
+
+    <string name="pref_title_sync_frequency">Mises à jour automatiques</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>tous les jours</item>
+        <item>tous les 3 jours</item>
+        <item>toutes les semaines</item>
+        <item>toutes les 2 semaines</item>
+        <item>tous les mois</item>
+        <item>jamais</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>1</item>
+        <item>3</item>
+        <item>7</item>
+        <item>14</item>
+        <item>30</item>
+        <item>-1</item>
+    </string-array>
+
+    <string name="pref_title_version">Version non spécifiée</string>
+    <string name="pref_default_version">Le contenu de cette application proviennent de <a href="http://www.bewegungsmelder.org">bewegungsmelder.org!</a>
+        \nJe décline toute responsabilité quant au contenu des liens et à l\'exactitudes des informations présentées.
+        \n\nEn cas de problème avec l\'application, vous pouvez trouver de l\'aide à l\'adresse <a href="http://arnefeil.de/">arnefeil.de</a></string>
+
+    <string name="pref_title_about">À Propos</string>
+</resources>
