@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Bewegungsmelder</string>
+    <string name="action_select_date">Sélectionner la date</string>
+    <string name="action_update_db">Mettre à jour</string>
+    <string name="text_search_for_update">Vérification des mises à jour...</string>
+    <string name="text_download_update">Téléchargement de la mise à jour...</string>
+    <string name="text_no_update_available">Aucune mise à jour disponible</string>
+    <string name="text_update_success">Mise à jour réussie</string>
+    <string name="text_update_error">Erreur lors de la mise à jour. Veuillez réessayer plus tard!</string>
+    <string name="action_settings">Réglages</string>
+    <string name="action_filter">Filtrer</string>
+    <string name="action_favorites">Favoris</string>
+    <string name="button_save">Sauvegarder</string>
+    <string name="button_cancel">Annuler</string>
+    <string name="title_activity_about">À Propos</string>
+    <string name="title_no_event_today">Rien de prévu aujourd\'hui...</string>
+
+</resources>
