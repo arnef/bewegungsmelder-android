@@ -1,4 +1,4 @@
-9Bewegungsmelder
+Bewegungsmelder
 ===============
 
 This App provides information on alternative events every day in Hamburg, Germany.
