@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
+        classpath 'com.android.tools.build:gradle:3.0.0'
     }
 }
 apply plugin: 'android'
@@ -16,7 +16,7 @@ android {
     signingConfigs {
     }
     compileSdkVersion 23
-    buildToolsVersion "25.0.2"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 23
