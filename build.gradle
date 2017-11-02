@@ -1,16 +1,13 @@
 buildscript {
     repositories {
         mavenCentral()
+        google()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.0'
     }
 }
-apply plugin: 'android'
-
-repositories {
-    mavenCentral()
-}
+apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
