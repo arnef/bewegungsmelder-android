@@ -1,30 +1,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:yourapp="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/action_select_date"
         android:title="@string/action_select_date"
         android:orderInCategory="100"
-        android:showAsAction="never" />
+        app:showAsAction="never" />
 
     <item android:id="@+id/action_filter"
         android:title="@string/action_filter"
         android:orderInCategory="101"
-        android:showAsAction="never" />
+        app:showAsAction="never" />
 
     <item android:id="@+id/action_favorites"
         android:title="@string/action_favorites"
         android:icon="@drawable/rating_favorite"
         android:orderInCategory="102"
-        yourapp:showAsAction="always" />
+        app:showAsAction="always" />
 
     <item android:id="@+id/action_update_db"
         android:title="@string/action_update_db"
         android:orderInCategory="102"
-        android:showAsAction="never" />
+        app:showAsAction="never" />
 
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
         android:orderInCategory="103"
-        android:showAsAction="never" />
+        app:showAsAction="never" />
 
 </menu>
