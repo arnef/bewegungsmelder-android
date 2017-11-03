@@ -4,10 +4,6 @@
     android:versionCode="140632"
     android:versionName="2.0.3" >
 
-    <uses-sdk
-        android:minSdkVersion="7"
-        android:targetSdkVersion="20" />
-
     <uses-permission android:name="android.permission.INTERNET" />
     
     
